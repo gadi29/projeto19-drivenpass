@@ -1,7 +1,7 @@
 import Joi from "joi";
-import { join } from "path";
+import { TUserData } from "../types/userTypes";
 
-const newUserSchema = Joi.object({
+const newUserSchema = Joi.object<TUserData>({
   email: Joi.string().email().required(),
   password: Joi.string().min(10).required()
 })
