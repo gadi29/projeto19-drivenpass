@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
-import { TCredentialData } from '../types/credentialType';
+import { Users } from '@prisma/client';
+import { TCredentialData } from '../types/credentialType.js';
 import * as credentialServices from '../services/credentialServices.js';
 
 export async function createCredential(req: Request, res: Response) {
+  const user: Users = res.locals.user;
   const newCredential: TCredentialData = req.body;
 
-  await credentialServices.createCredential(newCredential);
+  await credentialServices.createCredential(newCredential, user);
   res.status(201).send('Credential registered successfully');
 }
