@@ -30,6 +30,6 @@ export async function getAllUserCards(userId: number) {
   return cards;
 }
 
-// export async function deleteCard(id: number) {
-//   await prisma.cards.delete({ where: { id } });
-// }
+export async function deleteCard(id: number) {
+  await prisma.cards.delete({ where: { id } });
+}

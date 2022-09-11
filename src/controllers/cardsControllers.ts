@@ -26,10 +26,10 @@ export async function getCard(req: Request, res: Response) {
   res.status(200).send(card);
 }
 
-// export async function deleteCard(req: Request, res: Response) {
-//   const user: Users = res.locals.user;
-//   const cardId: number = +req.params.id;
+export async function deleteCard(req: Request, res: Response) {
+  const user: Users = res.locals.user;
+  const cardId: number = +req.params.id;
 
-//   await cardServices.deleteCard(user.id, cardId);
-//   res.status(200).send('Card deleted successfully');
-// }
+  await cardServices.deleteCard(user.id, cardId);
+  res.status(200).send('Card deleted successfully');
+}

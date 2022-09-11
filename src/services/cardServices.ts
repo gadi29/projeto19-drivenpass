@@ -59,10 +59,10 @@ export async function getCard(userId: number, cardId: number) {
   return { ...card, securityNumber: securityNumberDecrypted, password: passwordDecrypted };
 }
 
-// export async function deleteCard(userId: number, cardId: number) {
-//   const card: Cards = await getCardById(cardId);
-//   isUserCard(userId, card);
+export async function deleteCard(userId: number, cardId: number) {
+  const card: Cards = await getCardById(cardId);
+  isUserCard(userId, card);
 
-//   await cardRepository.deleteCard(cardId);
-//   return;
-// }
+  await cardRepository.deleteCard(cardId);
+  return;
+}
