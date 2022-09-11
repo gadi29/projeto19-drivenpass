@@ -10,8 +10,8 @@ export async function getUserByEmail(email: string) {
 }
 
 export async function signUp(newUser: TUserData) {
-  const existUser = getUserByEmail(newUser.email);
-  if (existUser) throw { type: 409, message: 'This email already exists' }
+  const existUser = await getUserByEmail(newUser.email);
+  if (existUser) throw { type: 'conflict', message: 'This email already exists' }
 
   const SALT: number = 10;
   const passwordHash: string = bcrypt.hashSync(newUser.password, SALT);
