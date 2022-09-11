@@ -14,6 +14,12 @@ export async function findByTitle(userId: number, title: string) {
   return credential;
 }
 
+export async function findById(id: number) {
+  const credential: Credentials = await prisma.credentials.findUnique({ where: { id } });
+
+  return credential;
+}
+
 export async function createCredential(credentialData: TCredentialData) {
   await prisma.credentials.create({ data: credentialData });
 }

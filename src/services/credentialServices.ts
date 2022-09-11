@@ -9,6 +9,17 @@ export async function getCredentialByTitle(userId: number, title: string) {
   return credential;
 }
 
+export async function getCredentialById(userId: number, credentialId: number) {
+  const credential: Credentials = await credentialRepository.findById(credentialId);
+
+  if (!credential) throw { type: 'not_found', message: 'Credential not found' }
+  if (userId !== credential.userId) throw { type: 'unauthorized', message: 'You are not authorized to access this credential' }
+
+  credential.password = cryptr.decrypt(credential.password);
+
+  return credential;
+}
+
 export async function createCredential(credential: TCredentialData, user: Users) {
   const existTitleCredential = await getCredentialByTitle(user.id, credential.title);
   if (existTitleCredential) throw { type: 'conflict', message: 'You already have a credential with this title' }
