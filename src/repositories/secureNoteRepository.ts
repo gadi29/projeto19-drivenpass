@@ -30,6 +30,6 @@ export async function getAllUserSecureNotes(userId: number) {
   return secureNotes;
 }
 
-// export async function deleteSecureNote(id: number) {
-//   await prisma.secureNotes.delete({ where: { id } });
-// }
+export async function deleteSecureNote(id: number) {
+  await prisma.secureNotes.delete({ where: { id } });
+}

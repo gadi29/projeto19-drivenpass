@@ -42,10 +42,10 @@ export async function getSecureNote(userId: number, secureNoteId: number) {
   return secureNote;
 }
 
-// export async function deleteSecureNote(userId: number, secureNoteId: number) {
-//   const secureNote: SecureNotes = await getSecureNoteById(secureNoteId);
-//   isUserSecureNote(userId, secureNote);
+export async function deleteSecureNote(userId: number, secureNoteId: number) {
+  const secureNote: SecureNotes = await getSecureNoteById(secureNoteId);
+  isUserSecureNote(userId, secureNote);
 
-//   await secureNoteRepository.deleteSecureNote(secureNoteId);
-//   return;
-// }
+  await secureNoteRepository.deleteSecureNote(secureNoteId);
+  return;
+}

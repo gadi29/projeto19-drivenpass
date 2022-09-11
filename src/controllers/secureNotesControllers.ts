@@ -26,10 +26,10 @@ export async function getSecureNote(req: Request, res: Response) {
   res.status(200).send(secureNote);
 }
 
-// export async function deleteSecureNote(req: Request, res: Response) {
-//   const user: Users = res.locals.user;
-//   const secureNoteId: number = +req.params.id;
+export async function deleteSecureNote(req: Request, res: Response) {
+  const user: Users = res.locals.user;
+  const secureNoteId: number = +req.params.id;
 
-//   await secureNoteServices.deleteSecureNote(user.id, secureNoteId);
-//   res.status(200).send('Secure note deleted successfully');
-// }
+  await secureNoteServices.deleteSecureNote(user.id, secureNoteId);
+  res.status(200).send('Secure note deleted successfully');
+}
