@@ -29,3 +29,7 @@ export async function getAllUserCredentials(userId: number) {
 
   return credentials;
 }
+
+export async function deleteCredential(id: number) {
+  await prisma.credentials.delete({ where: { id } });
+}

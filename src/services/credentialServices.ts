@@ -9,15 +9,23 @@ export async function getCredentialByTitle(userId: number, title: string) {
   return credential;
 }
 
-export async function getCredentialById(userId: number, credentialId: number) {
+export async function getCredentialById(credentialId: number) {
   const credential: Credentials = await credentialRepository.findById(credentialId);
 
   if (!credential) throw { type: 'not_found', message: 'Credential not found' }
-  if (userId !== credential.userId) throw { type: 'unauthorized', message: 'You are not authorized to access this credential' }
-
-  credential.password = cryptr.decrypt(credential.password);
 
   return credential;
+}
+
+export function isUserCredential(userId: number, credential: Credentials) {
+  if (credential.userId !== userId) throw { type: 'unauthorized', message: 'Unauthorized' };
+  return;
+}
+
+export function decryptPassword(password: string) {
+  password = cryptr.decrypt(password);
+
+  return password;
 }
 
 export async function createCredential(credential: TCredentialData, user: Users) {
@@ -36,4 +44,20 @@ export async function getUserCredentials(userId: number) {
   credentials.map(credential => credential.password = cryptr.decrypt(credential.password));
 
   return credentials;
+}
+
+export async function getCredential(userId: number, credentialId: number) {
+  const credential = await getCredentialById(credentialId);
+  isUserCredential(userId, credential);
+  const passwordDecrypted = decryptPassword(credential.password);
+
+  return { ...credential, password: passwordDecrypted };
+}
+
+export async function deleteCredential(userId: number, credentialId: number) {
+  const credential: Credentials = await getCredentialById(credentialId);
+  isUserCredential(userId, credential);
+
+  await credentialRepository.deleteCredential(credentialId);
+  return;
 }
