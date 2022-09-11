@@ -1,0 +1,12 @@
+import { Router } from "express";
+import { authenticateUser } from "../middlewares/authenticateUserMiddleware.js";
+import { validateSchemaMiddleware } from "../middlewares/validateSchemaMiddleware.js";
+
+const cardsRouter = Router();
+
+cardsRouter.post('/card', authenticateUser, validateSchemaMiddleware(), /*createCard*/);
+cardsRouter.get('/cards', authenticateUser, /*getUserCards*/);
+cardsRouter.get('/card/:id', authenticateUser, /*getCard*/);
+cardsRouter.delete('/card/:id', authenticateUser, /*deleteCard*/);
+
+export default cardsRouter;
