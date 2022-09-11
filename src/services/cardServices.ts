@@ -39,13 +39,16 @@ export async function createCard(card: TCardData, user: Users) {
   return;
 }
 
-// export async function getUserCards(userId: number) {
-//   const cards = await cardRepository.getAllUserCards(userId);
+export async function getUserCards(userId: number) {
+  const cards = await cardRepository.getAllUserCards(userId);
 
-//   cards.map(card => card.password = cryptr.decrypt(card.password));
+  cards.map(card => {
+    card.password = cryptr.decrypt(card.password);
+    card.securityNumber = cryptr.decrypt(card.securityNumber);
+  });
 
-//   return cards;
-// }
+  return cards;
+}
 
 // export async function getCard(userId: number, cardId: number) {
 //   const card = await getCardById(cardId);

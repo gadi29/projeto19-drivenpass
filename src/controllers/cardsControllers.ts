@@ -11,12 +11,12 @@ export async function createCard(req: Request, res: Response) {
   res.status(201).send('Card registered successfully');
 }
 
-// export async function getUserCards(req: Request, res: Response) {
-//   const user: Users = res.locals.user;
+export async function getUserCards(req: Request, res: Response) {
+  const user: Users = res.locals.user;
 
-//   const cards = await cardServices.getUserCards(user.id);
-//   res.status(200).send(cards);
-// }
+  const cards = await cardServices.getUserCards(user.id);
+  res.status(200).send(cards);
+}
 
 // export async function getCard(req: Request, res: Response) {
 //   const user: Users = res.locals.user;

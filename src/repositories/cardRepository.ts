@@ -24,11 +24,11 @@ export async function createCard(cardData: TCardData) {
   await prisma.cards.create({ data: cardData });
 }
 
-// export async function getAllUserCards(userId: number) {
-//   const cards = await prisma.cards.findMany({ where: { userId } });
+export async function getAllUserCards(userId: number) {
+  const cards = await prisma.cards.findMany({ where: { userId } });
 
-//   return cards;
-// }
+  return cards;
+}
 
 // export async function deleteCard(id: number) {
 //   await prisma.cards.delete({ where: { id } });
