@@ -18,3 +18,11 @@ export async function createCredential(credential: TCredentialData, user: Users)
   await credentialRepository.createCredential({ ...credential, password: passwordHash, userId: user.id });
   return;
 }
+
+export async function getUserCredentials(userId: number) {
+  const credentials = await credentialRepository.getAllUserCredentials(userId);
+
+  credentials.map(credential => credential.password = cryptr.decrypt(credential.password));
+
+  return credentials;
+}

@@ -17,3 +17,9 @@ export async function findByTitle(userId: number, title: string) {
 export async function createCredential(credentialData: TCredentialData) {
   await prisma.credentials.create({ data: credentialData });
 }
+
+export async function getAllUserCredentials(userId: number) {
+  const credentials = await prisma.credentials.findMany({ where: { userId } });
+
+  return credentials;
+}

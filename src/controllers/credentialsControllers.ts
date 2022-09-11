@@ -10,3 +10,10 @@ export async function createCredential(req: Request, res: Response) {
   await credentialServices.createCredential(newCredential, user);
   res.status(201).send('Credential registered successfully');
 }
+
+export async function getUserCredentials(req: Request, res: Response) {
+  const user: Users = res.locals.user;
+
+  const credentials = await credentialServices.getUserCredentials(user.id);
+  res.status(200).send(credentials);
+}
