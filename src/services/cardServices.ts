@@ -9,24 +9,24 @@ export async function getCardByTitle(userId: number, title: string) {
   return card;
 }
 
-// export async function getCardById(cardId: number) {
-//   const card: Cards = await cardRepository.findById(cardId);
+export async function getCardById(cardId: number) {
+  const card: Cards = await cardRepository.findById(cardId);
 
-//   if (!card) throw { type: 'not_found', message: 'Card not found' }
+  if (!card) throw { type: 'not_found', message: 'Card not found' }
 
-//   return card;
-// }
+  return card;
+}
 
-// export function isUserCard(userId: number, card: Cards) {
-//   if (card.userId !== userId) throw { type: 'unauthorized', message: 'Unauthorized' };
-//   return;
-// }
+export function isUserCard(userId: number, card: Cards) {
+  if (card.userId !== userId) throw { type: 'unauthorized', message: 'Unauthorized' };
+  return;
+}
 
-// export function decryptPassword(password: string) {
-//   password = cryptr.decrypt(password);
+export function decryptString(string: string) {
+  const stringDecrypted: string = cryptr.decrypt(string);
 
-//   return password;
-// }
+  return stringDecrypted;
+}
 
 export async function createCard(card: TCardData, user: Users) {
   const existTitleCard = await getCardByTitle(user.id, card.title);
@@ -50,13 +50,14 @@ export async function getUserCards(userId: number) {
   return cards;
 }
 
-// export async function getCard(userId: number, cardId: number) {
-//   const card = await getCardById(cardId);
-//   isUserCard(userId, card);
-//   const passwordDecrypted = decryptPassword(card.password);
+export async function getCard(userId: number, cardId: number) {
+  const card = await getCardById(cardId);
+  isUserCard(userId, card);
+  const passwordDecrypted = decryptString(card.password);
+  const securityNumberDecrypted = decryptString(card.securityNumber);
 
-//   return { ...card, password: passwordDecrypted };
-// }
+  return { ...card, securityNumber: securityNumberDecrypted, password: passwordDecrypted };
+}
 
 // export async function deleteCard(userId: number, cardId: number) {
 //   const card: Cards = await getCardById(cardId);

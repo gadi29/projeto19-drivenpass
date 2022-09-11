@@ -14,11 +14,11 @@ export async function findByTitle(userId: number, title: string) {
   return card;
 }
 
-// export async function findById(id: number) {
-//   const card: Cards = await prisma.cards.findUnique({ where: { id } });
+export async function findById(id: number) {
+  const card: Cards = await prisma.cards.findUnique({ where: { id } });
 
-//   return card;
-// }
+  return card;
+}
 
 export async function createCard(cardData: TCardData) {
   await prisma.cards.create({ data: cardData });

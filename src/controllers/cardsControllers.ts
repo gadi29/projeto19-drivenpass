@@ -18,13 +18,13 @@ export async function getUserCards(req: Request, res: Response) {
   res.status(200).send(cards);
 }
 
-// export async function getCard(req: Request, res: Response) {
-//   const user: Users = res.locals.user;
-//   const cardId: number = +req.params.id;
+export async function getCard(req: Request, res: Response) {
+  const user: Users = res.locals.user;
+  const cardId: number = +req.params.id;
 
-//   const card = await cardServices.getCard(user.id, cardId);
-//   res.status(200).send(card);
-// }
+  const card = await cardServices.getCard(user.id, cardId);
+  res.status(200).send(card);
+}
 
 // export async function deleteCard(req: Request, res: Response) {
 //   const user: Users = res.locals.user;
