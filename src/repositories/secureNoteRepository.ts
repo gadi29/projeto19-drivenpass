@@ -14,11 +14,11 @@ export async function findByTitle(userId: number, title: string) {
   return secureNote;
 }
 
-// export async function findById(id: number) {
-//   const secureNote: SecureNotes = await prisma.secureNotes.findUnique({ where: { id } });
+export async function findById(id: number) {
+  const secureNote: SecureNotes = await prisma.secureNotes.findUnique({ where: { id } });
 
-//   return secureNote;
-// }
+  return secureNote;
+}
 
 export async function createSecureNote(secureNoteData: TSecureNote) {
   await prisma.secureNotes.create({ data: secureNoteData });

@@ -18,13 +18,13 @@ export async function getUserSecureNotes(req: Request, res: Response) {
   res.status(200).send(secureNotes);
 }
 
-// export async function getSecureNote(req: Request, res: Response) {
-//   const user: Users = res.locals.user;
-//   const secureNoteId: number = +req.params.id;
+export async function getSecureNote(req: Request, res: Response) {
+  const user: Users = res.locals.user;
+  const secureNoteId: number = +req.params.id;
 
-//   const secureNote = await secureNoteServices.getSecureNote(user.id, secureNoteId);
-//   res.status(200).send(secureNote);
-// }
+  const secureNote = await secureNoteServices.getSecureNote(user.id, secureNoteId);
+  res.status(200).send(secureNote);
+}
 
 // export async function deleteSecureNote(req: Request, res: Response) {
 //   const user: Users = res.locals.user;

@@ -8,18 +8,18 @@ export async function getSecureNoteByTitle(userId: number, title: string) {
   return secureNote;
 }
 
-// export async function getSecureNoteById(secureNoteId: number) {
-//   const secureNote: SecureNotes = await secureNoteRepository.findById(secureNoteId);
+export async function getSecureNoteById(secureNoteId: number) {
+  const secureNote: SecureNotes = await secureNoteRepository.findById(secureNoteId);
 
-//   if (!secureNote) throw { type: 'not_found', message: 'Secure note not found' }
+  if (!secureNote) throw { type: 'not_found', message: 'Secure note not found' }
 
-//   return secureNote;
-// }
+  return secureNote;
+}
 
-// export function isUserSecureNote(userId: number, secureNote: SecureNotes) {
-//   if (secureNote.userId !== userId) throw { type: 'unauthorized', message: 'Unauthorized' };
-//   return;
-// }
+export function isUserSecureNote(userId: number, secureNote: SecureNotes) {
+  if (secureNote.userId !== userId) throw { type: 'unauthorized', message: 'Unauthorized' };
+  return;
+}
 
 export async function createSecureNote(note: TSecureNote, userId: number) {
   const existTitleNote = await getSecureNoteByTitle(userId, note.title);
@@ -35,12 +35,12 @@ export async function getUserSecureNotes(userId: number) {
   return secureNotes;
 }
 
-// export async function getSecureNote(userId: number, secureNoteId: number) {
-//   const secureNote = await getSecureNoteById(secureNoteId);
-//   isUserSecureNote(userId, secureNote);
+export async function getSecureNote(userId: number, secureNoteId: number) {
+  const secureNote = await getSecureNoteById(secureNoteId);
+  isUserSecureNote(userId, secureNote);
 
-//   return secureNote;
-// }
+  return secureNote;
+}
 
 // export async function deleteSecureNote(userId: number, secureNoteId: number) {
 //   const secureNote: SecureNotes = await getSecureNoteById(secureNoteId);
