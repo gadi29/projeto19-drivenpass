@@ -52,7 +52,7 @@ model Cards {
   title          String
   number         String
   cardholderName String
-  espirationDate String
+  expirationDate String
   securityNumber String
   password       String
   isVirtual      Boolean
