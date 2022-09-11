@@ -10,6 +10,12 @@ export async function getUserByEmail(email: string) {
   return user;
 }
 
+export async function getUserById(userId: number) {
+  const user: Users = await userRepository.findById(userId);
+
+  return user;
+}
+
 export async function signUp(newUser: TUserData) {
   const existUser = await getUserByEmail(newUser.email);
   if (existUser) throw { type: 'conflict', message: 'This email already exists' }
